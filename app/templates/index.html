@@ -1,14 +1,23 @@
 {% extends "base.html" %}
-{% import 'bootstrap4/form.html' as wtf %}
+{% import 'bootstrap5/form.html' as wtf %}
+
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='main.css')}}">
+{% endblock %}
 
 {% block content %}
     <h1>Welcome to CardGenerator!</h1>
     <p>Define the occasion you need the card for (e.g. a birthday) and describe up to three properties you want your card to have. </p>
     {% if form %}
-    {{ wtf.render_form(form) }}
+    <div class="form">
+      {{ wtf.render_form(form) }}
+    </div>
     <br>
     {% endif %}
     {% for mesg in get_flashed_messages() %}
       <p>{{ mesg }}</p>>
-      {% endfor %}
+    {% endfor %}
 {% endblock %}

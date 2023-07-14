@@ -19,7 +19,7 @@ def index():
         temperature = 0.2,
         max_tokens = 200,
         messages = [{"role": "system", "content": f"You are writing a card"},
-                    {"role": "user", "content": f"Write a card for a {occasionData} that is about {property1Data}, {property2Data}, {property3Data}"}])
+                    {"role": "user", "content": f"Write a card for a {occasionData} that is about: {property1Data}, {property2Data}, {property3Data}"}])
         text = response['choices'][0]['message']['content']
         flash(text)
     return render_template('index.html', title='Home', form=form)
