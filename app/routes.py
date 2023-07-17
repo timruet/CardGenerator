@@ -10,17 +10,18 @@ def index():
     form = PromptForm()
     if form.validate_on_submit():
         occasionData = form.occasion.data
-        property1Data = form.text1.data
-        property2Data = form.text2.data
-        property3Data = form.text3.data
+        contentData = form.content.data
+        length = form.length.data
         openai.api_key = "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"
         response = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo",
-        temperature = 0.2,
-        max_tokens = 200,
-        messages = [{"role": "system", "content": f"You are writing a card"},
-                    {"role": "user", "content": f"Write a card for a {occasionData} that is about: {property1Data}, {property2Data}, {property3Data}"}])
+        temperature = 0.5,
+        max_tokens = 1000,
+        messages = [{"role": "system", "content": f"You are writing a card with"},
+                    {"role": "user", "content": f"Write a {length} card for a {occasionData} that is about: {contentData}"}])
         text = response['choices'][0]['message']['content']
+        print(text)
+        text.replace('>', '')
         flash(text)
     return render_template('index.html', title='Home', form=form)
 

@@ -5,19 +5,19 @@
 {% block styles %}
 {{super()}}
 <link rel="stylesheet"
-      href="{{url_for('static', filename='main.css')}}">
+  href="{{url_for('static', filename='main.css')}}">
 {% endblock %}
 
 {% block content %}
-    <h1>Welcome to CardGenerator!</h1>
-    <p>Define the occasion you need the card for (e.g. a birthday) and describe up to three properties you want your card to have. </p>
+<div id="header"> <h1>Welcome to CardGenerator!</h1> </div>
+    <div id="input-form">
     {% if form %}
-    <div class="form">
       {{ wtf.render_form(form) }}
     </div>
-    <br>
     {% endif %}
+    <div id="blank">
     {% for mesg in get_flashed_messages() %}
-      <p>{{ mesg }}</p>>
+      <div id="result"> <p id="result">{{ mesg }}</p> </div>
     {% endfor %}
+    </div>
 {% endblock %}
