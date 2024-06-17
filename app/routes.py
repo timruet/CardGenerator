@@ -12,7 +12,7 @@ def index():
         occasionData = form.occasion.data
         contentData = form.content.data
         length = form.length.data
-        openai.api_key = "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"
+        openai.api_key = "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" //old key
         response = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo",
         temperature = 0.5,
